@@ -4,7 +4,9 @@ const request = require('supertest');
 const app = require('../lib/app');
 
 const { aliens } = require('../lib/alien-data');
+const { cowboys } = require('../lib/cowboy-data.js');
 
+// below are the tests for the aliens
 describe('alien routes', () => {
   beforeEach(() => {
     return setup(pool);
@@ -32,5 +34,19 @@ describe('alien routes', () => {
 
   afterAll(() => {
     pool.end();
+  });
+});
+// below are the tests for the cowboys
+describe('cowboy routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+
+  it('/cowboys should return a list of cowoys', async () => {
+    const res = await request(app).get('/cowboys');
+    const expected = cowboys.map((cowboy) => {
+      return { id: cowboy.id, name: cowboy.name };
+    });
+    expect(res.body).toEqual(expected);
   });
 });
