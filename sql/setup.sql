@@ -6,10 +6,10 @@ CREATE TABLE alien_model (
     id BIGINT GENERATED ALWAYS AS IDENTITY,
     name VARCHAR NOT NULL,
     type VARCHAR NOT NULL,
-    lives INT NOT NULL
+    year INT NOT NULL
 );
 
-INSERT INTO alien_model (name, type, lives)
+INSERT INTO alien_model (name, type, year)
 VALUES
 ('Felixoid', 'Tuxedo', 1892),
 ('Garfieldoid', 'Orange Tabby', 1978),

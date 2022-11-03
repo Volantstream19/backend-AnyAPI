@@ -18,7 +18,7 @@ describe('alien routes', () => {
     expect(res.body).toEqual(expected);
   });
 
-  it('/aliens/:id should return cat detail', async () => {
+  it('/aliens/:id should return alien detail', async () => {
     const res = await request(app).get('/aliens/1');
     const felixoid = {
       id: '1',
