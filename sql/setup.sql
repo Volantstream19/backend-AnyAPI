@@ -1,5 +1,6 @@
 -- Use this file to define your SQL tables
 -- The SQL in this file will be executed when you run `npm run setup-db`
+-- This table is for All ALiens
 DROP TABLE IF EXISTS alien_model;
 
 CREATE TABLE alien_model (
@@ -20,3 +21,24 @@ VALUES
 ('Pina', 'Colada', 1974),
 ('Hobbes', 'chef', 1985);
 
+
+-- This table is for all Cowboys
+
+DROP TABLE IF EXISTS cowboy_model;
+
+    CREATE TABLE cowboy_model (
+    id BIGINT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR NOT NULL,
+    type VARCHAR NOT NULL,
+    size INT NOT NULL
+    );
+
+INSERT INTO cowboy_model (name, type, size)
+VALUES
+('McCree', 'Outlaw', 'Large'),
+('Brian', 'Sherriff', 'Large'),
+('Carlos', 'Banker', 'Medium'),
+('Genghis', 'Khan', 'Extra Large'),
+('Arthur', 'Outlaw', 'Large'),
+('John', 'Citizen', 'Large'),
+('Cassidy', 'Outlaw', 'Large');
