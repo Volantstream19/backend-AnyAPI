@@ -12,9 +12,13 @@ describe('alien routes', () => {
 
   it('/aliens should return a list of aliens', async () => {
     const res = await request(app).get('/aliens');
-    const expect = aliens.map((alien) => {
+    const expected = aliens.map((alien) => {
       return { id: alien.id, name: alien.name };
     });
-    expect(res.body).toEqual(expect);
+    expect(res.body).toEqual(expected);
+  });
+
+  afterAll(() => {
+    pool.end();
   });
 });
