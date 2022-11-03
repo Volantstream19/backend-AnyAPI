@@ -18,6 +18,18 @@ describe('alien routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('/aliens/:id should return cat detail', async () => {
+    const res = await request(app).get('/aliens/1');
+    const felixoid = {
+      id: '1',
+      name: 'Felixoid',
+      type: 'Tuxedo',
+      year: 1892,
+    };
+
+    expect(res.body).toEqual(felixoid);
+  });
+
   afterAll(() => {
     pool.end();
   });
