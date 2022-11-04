@@ -1,15 +1,62 @@
 const pool = require('../lib/utils/pool');
 const setup = require('../data/setup');
-// const request = require('supertest');
-// const app = require('../lib/app');
+const request = require('supertest');
+const app = require('../lib/app');
 
-describe('backend-express-template routes', () => {
+const { aliens } = require('../lib/alien-data');
+const { cowboys } = require('../lib/cowboy-data.js');
+
+// below are the tests for the aliens
+describe('alien routes', () => {
   beforeEach(() => {
     return setup(pool);
   });
-  it('example test - delete me!', () => {
-    expect(1).toEqual(1);
+
+  it('/aliens should return a list of aliens', async () => {
+    const res = await request(app).get('/aliens');
+    const expected = aliens.map((alien) => {
+      return { id: alien.id, name: alien.name };
+    });
+    expect(res.body).toEqual(expected);
   });
+
+  it('/aliens/:id should return alien detail', async () => {
+    const res = await request(app).get('/aliens/1');
+    const felixoid = {
+      id: '1',
+      name: 'Felixoid',
+      type: 'Tuxedo',
+      year: 1892,
+    };
+
+    expect(res.body).toEqual(felixoid);
+  });
+});
+// below are the tests for the cowboys
+describe('cowboy routes', () => {
+  beforeEach(() => {
+    return setup(pool);
+  });
+
+  it('/cowboys should return a list of cowboys', async () => {
+    const res = await request(app).get('/cowboys');
+    const expected = cowboys.map((cowboy) => {
+      return { id: cowboy.id, name: cowboy.name };
+    });
+    expect(res.body).toEqual(expected);
+  });
+
+  it('/cowboys/:id should return cowboy detail', async () => {
+    const res = await request(app).get('/cowboys/1');
+    const McCree = {
+      id: '1',
+      name: 'McCree',
+      type: 'Outlaw',
+    };
+
+    expect(res.body).toEqual(McCree);
+  });
+
   afterAll(() => {
     pool.end();
   });
