@@ -46,6 +46,17 @@ describe('cowboy routes', () => {
     expect(res.body).toEqual(expected);
   });
 
+  it('/cowboys/:id should return cowboy detail', async () => {
+    const res = await request(app).get('/cowboys/1');
+    const McCree = {
+      id: '1',
+      name: 'McCree',
+      type: 'Outlaw',
+    };
+
+    expect(res.body).toEqual(McCree);
+  });
+
   afterAll(() => {
     pool.end();
   });
