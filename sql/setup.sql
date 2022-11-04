@@ -26,19 +26,18 @@ VALUES
 
 DROP TABLE IF EXISTS cowboy_model;
 
-    CREATE TABLE cowboy_model (
+CREATE TABLE cowboy_model (
     id BIGINT GENERATED ALWAYS AS IDENTITY,
     name VARCHAR NOT NULL,
-    type VARCHAR NOT NULL,
-    size INT NOT NULL
-    );
+    type VARCHAR NOT NULL
+);
 
-INSERT INTO cowboy_model (name, type, size)
+INSERT INTO cowboy_model (name, type)
 VALUES
-('McCree', 'Outlaw', 'Large'),
-('Brian', 'Sherriff', 'Large'),
-('Carlos', 'Banker', 'Medium'),
-('Genghis', 'Khan', 'Extra Large'),
-('Arthur', 'Outlaw', 'Large'),
-('John', 'Citizen', 'Large'),
-('Cassidy', 'Outlaw', 'Large');
+('McCree', 'Outlaw'),
+('Brian', 'Sherriff'),
+('Carlos', 'Banker'),
+('Genghis', 'Khan'),
+('Arthur', 'Outlaw'),
+('John', 'Citizen'),
+('Cassidy', 'Outlaw');

@@ -31,10 +31,6 @@ describe('alien routes', () => {
 
     expect(res.body).toEqual(felixoid);
   });
-
-  afterAll(() => {
-    pool.end();
-  });
 });
 // below are the tests for the cowboys
 describe('cowboy routes', () => {
@@ -42,11 +38,15 @@ describe('cowboy routes', () => {
     return setup(pool);
   });
 
-  it('/cowboys should return a list of cowoys', async () => {
+  it('/cowboys should return a list of cowboys', async () => {
     const res = await request(app).get('/cowboys');
     const expected = cowboys.map((cowboy) => {
       return { id: cowboy.id, name: cowboy.name };
     });
     expect(res.body).toEqual(expected);
+  });
+
+  afterAll(() => {
+    pool.end();
   });
 });
